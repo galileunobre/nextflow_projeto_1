@@ -2,7 +2,7 @@
 library(tidyverse)
 
 ### buscando base de dados
-dados <- read.csv("PNS_2019.csv", sep = ";", header = T)
+dados <- read.csv("PNS-2019.csv", sep = ";", header = T)
 head(dados)
 
 dados <- filter(dados, V0015 == 1)

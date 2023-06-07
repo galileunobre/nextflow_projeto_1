@@ -1,7 +1,9 @@
 library(AER)
 library(MASS)
 library(COUNT)
-library(outliers)
+
+### buscando base de dados
+dados <- read.csv("pns_19t.csv", sep = ",", header = T)
 
 attach(dados)
 ## rodando o modelo de Poisson

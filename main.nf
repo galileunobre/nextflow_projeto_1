@@ -1,7 +1,6 @@
-#!/usr/bin/env nextflow
 
 params.resultados = 'resultados'
-params.pns = '$projectDir/PNS.csv'
+params.pns = "$projectDir/PNS.csv"
 
 process TRATAMENTO {
     publishDir "resultados", mode: 'copy'

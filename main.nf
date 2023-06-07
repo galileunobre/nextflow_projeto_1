@@ -18,7 +18,7 @@ process TRATAMENTO {
     library(tidyverse)
 
     ### buscando base de dados
-    dados <- read.csv("$PNS.csv", sep = ";", header = T)
+    dados <- read.csv("PNS.csv", sep = ";", header = T)
     head(dados)
 
     dados <- filter(dados, V0015 == 1)
@@ -89,7 +89,7 @@ process DESCRITIVA {
     library(tidyverse)
 
     ### buscando base de dados
-    dados <- read.csv("$pns19t.csv", sep = ",", header = T)
+    dados <- read.csv("pns19t.csv", sep = ",", header = T)
     head(dados)
 
     ### Analise descritiva da base de dados
@@ -135,7 +135,7 @@ process ANALISE {
     library(COUNT)
 
     ### buscando base de dados
-    dados <- read.csv("$pns19t.csv", sep = ",", header = T)
+    dados <- read.csv("pns19t.csv", sep = ",", header = T)
 
     attach(dados)
     ## rodando o modelo de Poisson

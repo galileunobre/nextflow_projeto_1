@@ -59,6 +59,4 @@ min(resutados$Dist._Residuos)
 ## Arquivo de resultados 
 
 # Salvando tabelas
-write.table(variaveis, file = "Analise_descritiva.csv")
-write.table(consultas, file = "Estatisticas_consultas.csv")
 write.table(resultados, file = "Resultados.csv")

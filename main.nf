@@ -8,7 +8,7 @@ process TRATAMENTO {
 
     input: path PNS
 
-    output: path 'pns_19t.csv'
+    output: path 'pns19t.csv'
     
     script:
     """
@@ -74,7 +74,6 @@ process DESCRITIVA {
     container 'galileunobre/analise_reg:v1.1'
 
     input: path pns19t
-
     output: 
     path 'Analise_descritiva.csv'
     path 'Estatisticas_consultas.csv'
@@ -120,7 +119,7 @@ process ANALISE {
     publishDir "resultados", mode: 'copy'
     container 'galileunobre/analise_reg:v1.1'
 
-    input: path pns_19t
+    input: path pns19t
 
     output: path 'Resultados.csv'
 
@@ -130,7 +129,6 @@ process ANALISE {
 
     library(AER)
     library(MASS)
-    library(COUNT)
 
     ### buscando base de dados
     dados <- read.csv("pns19t.csv", sep = ",", header = T)

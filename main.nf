@@ -4,6 +4,7 @@ params.pns = "$projectDir/PNS.csv"
 
 process TRATAMENTO {
     publishDir "resultados", mode: 'copy'
+    container 'docker://galileunobre/analise_reg:v1.1'
 
     input: path PNS
 
@@ -74,6 +75,7 @@ process TRATAMENTO {
 
 process DESCRITIVA {
     publishDir "resultados", mode: 'copy'
+    container 'docker://galileunobre/analise_reg:v1.1'
 
     input: path pns19t
 
@@ -120,6 +122,7 @@ process DESCRITIVA {
 
 process ANALISE {
     publishDir "resultados", mode: 'copy'
+    container 'docker://galileunobre/analise_reg:v1.1'
 
     input: path pns_19t
 

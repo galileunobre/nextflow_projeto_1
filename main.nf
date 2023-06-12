@@ -4,7 +4,7 @@ params.pns = "$projectDir/PNS.csv"
 
 process TRATAMENTO {
     publishDir "resultados", mode: 'copy'
-    container 'galileunobre/analise_reg:v1.2'
+    container 'galileunobre/analise_reg:v1.3'
 
     input: path PNS
 
@@ -14,7 +14,11 @@ process TRATAMENTO {
     """
      #!/usr/bin/Rscript
 
-    library(tidyverse)
+    library(tibble)
+    library(dplyr)
+    library(tidyr)
+    library(readr)
+    library(purrr)
     
     ### buscando base de dados
     dados <- read.csv("PNS.csv", sep = ";", header = TRUE)
@@ -71,7 +75,7 @@ process TRATAMENTO {
 
 process DESCRITIVA {
     publishDir "resultados", mode: 'copy'
-    container 'galileunobre/analise_reg:v1.2'
+    container 'galileunobre/analise_reg:v1.3'
 
     input: path pns19t
     output: 
@@ -82,7 +86,11 @@ process DESCRITIVA {
     """
     #!/usr/bin/Rscript
 
-    library(tidyverse)
+    library(tibble)
+    library(dplyr)
+    library(tidyr)
+    library(readr)
+    library(purrr)
 
     ### buscando base de dados
     dados <- read.csv("pns19t.csv", sep = ",", header = T)
@@ -117,7 +125,7 @@ process DESCRITIVA {
 
 process ANALISE {
     publishDir "resultados", mode: 'copy'
-    container 'galileunobre/analise_reg:v1.2'
+    container 'galileunobre/analise_reg:v1.3'
 
     input: path pns19t
 

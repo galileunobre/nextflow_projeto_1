@@ -32,7 +32,7 @@ process TRATAMENTO {
              consultas = J012)
 
     #var mulher
-    dados\$sexo <- dados$C006
+    dados\$sexo <- dados\$C006
     dados\$sexo <- ifelse(dados\$sexo == 1, 1, 0)
     dados\$mulher <- ifelse(dados\$sexo == 0, TRUE, FALSE)
     dados\$mulher

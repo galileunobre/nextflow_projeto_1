@@ -66,8 +66,6 @@ process TRATAMENTO {
     dados <- dados %>%
     filter(consultas <= 52)
 
-    hist(dados\$consultas)
-
     write.csv(dados, file = "pns19t.csv")
 
     """

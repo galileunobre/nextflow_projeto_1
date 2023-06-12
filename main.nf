@@ -12,7 +12,7 @@ process TRATAMENTO {
     
     script:
     """
-    #!/usr/bin/env Rscript
+     #!/usr/bin/Rscript
 
     library(tidyverse)
     

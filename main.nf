@@ -12,8 +12,7 @@ process TRATAMENTO {
     
     script:
     """
-
-    `#!/usr/bin/Rscript`
+    #!/usr/bin/Rscript
 
     library(tidyverse)
 
@@ -83,7 +82,7 @@ process DESCRITIVA {
 
     script:
     """
-    `#!/usr/bin/Rscript`
+    #!/usr/bin/Rscript
 
     library(tidyverse)
 
@@ -128,7 +127,7 @@ process ANALISE {
 
     script:
     """
-    `#!/usr/bin/Rscript`
+    #!/usr/bin/Rscript
 
     library(AER)
     library(MASS)

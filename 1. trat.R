@@ -1,9 +1,11 @@
-# 
+# abrindo pacotes
 library(tidyverse)
 
 ### buscando base de dados
-dados <- read.csv("PNS-2019.csv", sep = ";", header = T)
+dados <- read.csv("PNS.csv", sep = ",", header = T)
 head(dados)
+
+dados <- dados[1:8000,]
 
 dados <- filter(dados, V0015 == 1)
 
@@ -50,6 +52,5 @@ dados <- select(dados, UF, Idade, Salario, sexo, mulher, casado,
 dados <- dados %>%
   filter(consultas <= 52)
 
-hist(dados$consultas)
 
 write.csv(dados, file = "pns_19t.csv")

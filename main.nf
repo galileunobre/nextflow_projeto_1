@@ -137,8 +137,7 @@ process ANALISE {
     script:
     """
     #!/usr/bin/Rscript
-
-    library(AER)
+    
     library(MASS)
 
     ### buscando base de dados

@@ -8,7 +8,7 @@ process TRATAMENTO {
 
     input: path PNS
 
-    output: path 'pns19t.csv'
+    output: path 'pns_19t.csv'
     
     script:
     """
@@ -80,7 +80,7 @@ process DESCRITIVA {
     publishDir "resultados", mode: 'copy'
     container 'galileunobre/analise_reg:v1.3'
 
-    input: path pns19t
+    input: path pns_19t
     output: 
     path 'Analise_descritiva.csv'
     path 'Estatisticas_consultas.csv'
@@ -130,7 +130,7 @@ process ANALISE {
     publishDir "resultados", mode: 'copy'
     container 'galileunobre/analise_reg:v1.3'
 
-    input: path pns19t
+    input: path pns_19t
 
     output: path 'Resultados.csv'
 

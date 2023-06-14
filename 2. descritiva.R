@@ -21,6 +21,8 @@ variaveis
 
 consultas <- tribble(~Média, ~Desvio_Padrão,
                      mean(dados$consultas, na.rm = T), sd(dados$consultas, na.rm = T))
-# salvando tabelas
+consultas
+
+# Salvando tabelas
 write.table(variaveis, file = "Analise_descritiva.csv")
 write.table(consultas, file = "Estatisticas_consultas.csv")

@@ -139,6 +139,7 @@ process ANALISE {
     #!/usr/bin/Rscript
     
     library(MASS)
+    library(tibble)
 
     ### buscando base de dados
     dados <- read.csv("pns_19t.csv", sep = ",", header = T)

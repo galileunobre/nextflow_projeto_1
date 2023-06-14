@@ -21,26 +21,29 @@ process TRATAMENTO {
     library(purrr)
     
     ### buscando base de dados
-    dados <- read.csv("PNS.csv", sep = ";", header = TRUE)
+    dados <- read.csv("PNS.csv", sep = ",", header = T)
     head(dados)
-    
+
+    dados <- dados[1:8000,]
+
     dados <- filter(dados, V0015 == 1)
 
     ### criando as variáveis da análise
 
     #var UF (estado), idade e salário
     dados <- dados %>%
-    rename(UF = V0001,
-             Idade = C008,
-             Salario = E01602,
-             consultas = J012)
+        rename(c("UF" = "V0001", 
+            "Idade" =  "C008", 
+            "Salario" = "E01602",
+            "consultas" = "J012"
+              ))
 
     #var mulher
     dados\$sexo <- dados\$C006
     dados\$sexo <- ifelse(dados\$sexo == 1, 1, 0)
     dados\$mulher <- ifelse(dados\$sexo == 0, TRUE, FALSE)
     dados\$mulher
-    
+
     #var casado
     dados\$casado <- ifelse(dados\$C011 == 1, TRUE, FALSE)
     dados\$casado
@@ -48,28 +51,28 @@ process TRATAMENTO {
     #var nao_branco
     dados\$nao_branco <- ifelse(dados\$C009 == 1, FALSE, TRUE)
     dados\$nao_branco
-    
+
     #var rural
-    dados\$rural <- ifelse(dados\$V0026 == 2, TRUE, FALSE)
+    dados\$rural <- ifelse(dados\$V0026 == 2,TRUE, FALSE)
     dados\$rural
-    
+
     #var redes_sociais
     dados\$redes_sociais <- ifelse(dados\$P04502 == 6, FALSE, TRUE)
     dados\$redes_sociais
-    
+
     #var ocupado
     dados\$ocupado <- ifelse(dados\$VDE002 == 1, TRUE, FALSE)
     dados\$ocupado
-    
+
     ## Filtrar somente as colunas que serão usadas
     dados <- select(dados, UF, Idade, Salario, sexo, mulher, casado,
                     nao_branco, rural, redes_sociais, ocupado, consultas)
     
     dados <- dados %>%
-    filter(consultas <= 52)
+        filter(consultas <= 52)
 
-    write.csv(dados, file = "pns19t.csv")
 
+    write.csv(dados, file = "pns_19t.csv")
     """
 }
 
@@ -93,7 +96,7 @@ process DESCRITIVA {
     library(purrr)
 
     ### buscando base de dados
-    dados <- read.csv("pns19t.csv", sep = ",", header = T)
+    dados <- read.csv("pns_19t.csv", sep = ",", header = T)
     head(dados)
 
     ### Analise descritiva da base de dados
@@ -139,7 +142,7 @@ process ANALISE {
     library(MASS)
 
     ### buscando base de dados
-    dados <- read.csv("pns19t.csv", sep = ",", header = T)
+    dados <- read.csv("pns_19t.csv", sep = ",", header = T)
 
     attach(dados)
     ## rodando o modelo de Poisson
@@ -176,8 +179,6 @@ process ANALISE {
                      "Poisson", sum(res_p^2)/poisson\$df.residual, AIC(poisson),
                      "Binomial Negativo", sum(res_p^2)/bi_negativo\$df.residual, AIC(bi_negativo)
                      )
-
-    ## Arquivo de resultados 
 
     # Salvando tabelas
     write.table(resultados, file = "Resultados.csv")
